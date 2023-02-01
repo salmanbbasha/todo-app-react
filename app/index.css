@@ -217,8 +217,8 @@ ul {
   padding-inline: 10px;
 }
 
-.filters button:focus {
-  border: 1px solid red;
+.filters button.active {
+  border: 2px solid #D2042D;
   border-radius: 5px;
 }
 
