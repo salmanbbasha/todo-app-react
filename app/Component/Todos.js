@@ -56,6 +56,7 @@ class Todos extends Component {
 
   handleClear() {
     this.setState({
+      filter: 'All',
       todos: this.state.todos.filter(todo => todo.completed !== true)
     });
   }

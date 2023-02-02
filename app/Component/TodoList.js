@@ -1,83 +1,62 @@
 import React from 'react';
 
+function List({ Todo, onHandleDelete, onHandleComplete }) {
+  return (
+    <li>
+      <label className="label-container">
+        <input
+          type="checkbox"
+          defaultChecked={Todo.completed}
+          onChange={() => onHandleComplete(Todo.id, Todo.completed)}
+        />
+        <span className="checkmark"></span>
+        <span className="todo">{Todo.task}</span>
+      </label>
+
+      <button
+        className="btn-delete"
+        onClick={() => onHandleDelete(Todo.id)}
+      ></button>
+    </li>
+  );
+}
+
 const TodoList = props => {
   return (
     <div className="todo-list-container">
       <ul>
         {props.filter === 'All' &&
           props.todos.map(todo => (
-            <li key={todo.id}>
-              <label className="label-container">
-                <input
-                  type="checkbox"
-                  defaultChecked={todo.completed}
-                  onChange={() =>
-                    props.onHandleComplete(todo.id, todo.completed)
-                  }
-                />
-                <span className="checkmark"></span>
-                <span className="todo">{todo.task}</span>
-              </label>
-
-              <button
-                className="btn-delete"
-                onClick={() => props.onHandleDelete(todo.id)}
-              ></button>
-            </li>
+            <List
+              key={todo.id}
+              Todo={todo}
+              onHandleDelete={props.onHandleDelete}
+              onHandleComplete={props.onHandleComplete}
+            />
           ))}
 
         {props.filter === 'Active' &&
           props.todos
             .filter(todo => todo.completed !== true)
             .map(filteredTodo => (
-              <li key={filteredTodo.id}>
-                <label className="label-container">
-                  <input
-                    type="checkbox"
-                    defaultChecked={filteredTodo.completed}
-                    onChange={() =>
-                      props.onHandleComplete(
-                        filteredTodo.id,
-                        filteredTodo.completed
-                      )
-                    }
-                  />
-                  <span className="checkmark"></span>
-                  <span className="todo">{filteredTodo.task}</span>
-                </label>
-
-                <button
-                  className="btn-delete"
-                  onClick={() => props.onHandleDelete(filteredTodo.id)}
-                ></button>
-              </li>
+              <List
+                key={filteredTodo.id}
+                Todo={filteredTodo}
+                onHandleDelete={props.onHandleDelete}
+                onHandleComplete={props.onHandleComplete}
+              />
             ))}
 
         {props.filter === 'Completed' &&
           props.todos
             .filter(todo => todo.completed !== false)
             .map(filteredTodo => (
-              <li key={filteredTodo.id}>
-                <label className="label-container">
-                  <input
-                    type="checkbox"
-                    defaultChecked={filteredTodo.completed}
-                    onChange={() =>
-                      props.onHandleComplete(
-                        filteredTodo.id,
-                        filteredTodo.completed
-                      )
-                    }
-                  />
-                  <span className="checkmark"></span>
-                  <span className="todo">{filteredTodo.task}</span>
-                </label>
-
-                <button
-                  className="btn-delete"
-                  onClick={() => props.onHandleDelete(filteredTodo.id)}
-                ></button>
-              </li>
+              <List
+                key={filteredTodo.id}
+                Todo={filteredTodo}
+                onHandleDelete={props.onHandleDelete}
+                onHandleComplete={props.onHandleComplete}
+              />
             ))}
       </ul>
     </div>
