@@ -21,14 +21,17 @@ class Form extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.onHandleSubmit({
-      id: uniqid('todo-'),
-      task: this.state.taskName,
-      completed: false
-    });
-    this.setState({
-      taskName: ''
-    });
+    if (this.state.taskName !== '') {
+      this.props.onHandleSubmit({
+        id: uniqid('todo-'),
+        task: this.state.taskName,
+        completed: false
+      });
+
+      this.setState({
+        taskName: ''
+      });
+    }
   }
   render() {
     const { taskName } = this.state;
@@ -39,7 +42,7 @@ class Form extends Component {
           id="todo_input"
           autoComplete="off"
           placeholder="What needs to be done?"
-          maxLength="36"
+          maxLength="24"
           value={taskName}
           onChange={event => this.handleChange(event)}
         />

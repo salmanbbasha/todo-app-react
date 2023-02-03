@@ -6,9 +6,7 @@ import Todos from './Component/Todos';
 const App = () => {
   return (
     <React.StrictMode>
-      <div>
-        <Todos />
-      </div>
+      <Todos />
     </React.StrictMode>
   );
 };

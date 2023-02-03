@@ -1,3 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   font-size: 16px;
   background-color: #FAF9F6;
@@ -59,7 +71,6 @@ ul {
   left: 50%;
   top: 30%;
   transform: translate(-50%, -30%);
-
 }
 
 .card {
@@ -178,10 +189,10 @@ ul {
 }
 
 .label-container .checkmark:after {
-  left: 9px;
-  top: 3.5px;
-  width: 5px;
-  height: 13px;
+  left: 8px;
+  top: 4px;
+  width: 4px;
+  height: 12px;
   border: solid green;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
@@ -226,5 +237,43 @@ ul {
 .footer .filters {
   width: 40%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
+}
+
+@media screen and (max-width:600px) {
+  .todoapp {
+    margin: 0 auto;
+    height: 100%;
+    position: static;
+    transform: none;
+    width: 90%;
+  }
+
+  .card {
+    height: 90%;
+  }
+
+  .todo-list-container {
+    height: calc(100% - 115px);
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width:480px) {
+
+  .todo-list-container {
+    height: calc(100% - 165px);
+    overflow-y: scroll;
+  }
+
+  .footer {
+    position: relative;
+  }
+
+  .footer .filters {
+    width: 50%;
+    position: absolute;
+    top: 50px;
+  }
+
 }
